@@ -30,7 +30,10 @@ namespace PowerPointAlignCenter
 
         private void AlignMiddle(Microsoft.Office.Interop.PowerPoint.ShapeRange shapeRange)
         {
-
+            if (shapeRange.Count < 2)
+            {
+                return;
+            }
         }
     }
 }
