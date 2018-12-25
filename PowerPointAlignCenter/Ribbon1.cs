@@ -16,7 +16,21 @@ namespace PowerPointAlignCenter
         private void button1_Click(object sender, RibbonControlEventArgs e)
         {
             var selectedShapes = Globals.ThisAddIn.Application.ActiveWindow.Selection.ShapeRange;
-            System.Windows.Forms.MessageBox.Show(selectedShapes.Count.ToString());
+            try
+            {
+                if (selectedShapes.Count < 2)
+                    return;
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        private void AlignMiddle(Microsoft.Office.Interop.PowerPoint.ShapeRange shapeRange)
+        {
+
         }
     }
 }
