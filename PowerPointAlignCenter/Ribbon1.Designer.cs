@@ -36,7 +36,9 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
-            this.button1 = this.Factory.CreateRibbonButton();
+            this.buttonHorizontalAlignMiddle = this.Factory.CreateRibbonButton();
+            this.buttonVerticalAlignMiddle = this.Factory.CreateRibbonButton();
+            this.buttonAlignMiddle = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.SuspendLayout();
@@ -50,15 +52,29 @@
             // 
             // group1
             // 
-            this.group1.Items.Add(this.button1);
-            this.group1.Label = "group1";
+            this.group1.Items.Add(this.buttonHorizontalAlignMiddle);
+            this.group1.Items.Add(this.buttonVerticalAlignMiddle);
+            this.group1.Items.Add(this.buttonAlignMiddle);
+            this.group1.Label = "排列";
             this.group1.Name = "group1";
             // 
-            // button1
+            // buttonHorizontalAlignMiddle
             // 
-            this.button1.Label = "button1";
-            this.button1.Name = "button1";
-            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
+            this.buttonHorizontalAlignMiddle.Label = "水平居中";
+            this.buttonHorizontalAlignMiddle.Name = "buttonHorizontalAlignMiddle";
+            this.buttonHorizontalAlignMiddle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ButtonAlignMiddle_Click);
+            // 
+            // buttonVerticalAlignMiddle
+            // 
+            this.buttonVerticalAlignMiddle.Label = "垂直居中";
+            this.buttonVerticalAlignMiddle.Name = "buttonVerticalAlignMiddle";
+            this.buttonVerticalAlignMiddle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ButtonAlignMiddle_Click);
+            // 
+            // buttonAlignMiddle
+            // 
+            this.buttonAlignMiddle.Label = "完全居中";
+            this.buttonAlignMiddle.Name = "buttonAlignMiddle";
+            this.buttonAlignMiddle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ButtonAlignMiddle_Click);
             // 
             // Ribbon1
             // 
@@ -78,7 +94,9 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonHorizontalAlignMiddle;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonVerticalAlignMiddle;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonAlignMiddle;
     }
 
     partial class ThisRibbonCollection

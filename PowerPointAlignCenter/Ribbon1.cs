@@ -13,27 +13,60 @@ namespace PowerPointAlignCenter
 
         }
 
-        private void button1_Click(object sender, RibbonControlEventArgs e)
+
+        private void ButtonAlignMiddle_Click(object sender, RibbonControlEventArgs e)
         {
-            var selectedShapes = Globals.ThisAddIn.Application.ActiveWindow.Selection.ShapeRange;
             try
             {
-                if (selectedShapes.Count < 2)
-                    return;
+                if (((RibbonButton)sender).Label == "水平居中")
+                {
+                    AlignMiddle(Globals.ThisAddIn.Application.ActiveWindow.Selection.ShapeRange, AlignDirection.Horizontal);
+                }
+                else if (((RibbonButton)sender).Label == "垂直居中")
+                {
+                    AlignMiddle(Globals.ThisAddIn.Application.ActiveWindow.Selection.ShapeRange, AlignDirection.Vertical);
+                }
+                else
+                {
+                    AlignMiddle(Globals.ThisAddIn.Application.ActiveWindow.Selection.ShapeRange, AlignDirection.Horizontal);
+                    AlignMiddle(Globals.ThisAddIn.Application.ActiveWindow.Selection.ShapeRange, AlignDirection.Vertical);
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                System.Windows.Forms.MessageBox.Show(ex.Message, "Error");
             }
-            
         }
 
-        private void AlignMiddle(Microsoft.Office.Interop.PowerPoint.ShapeRange shapeRange)
+        enum AlignDirection
         {
-            if (shapeRange.Count < 2)
+            Horizontal,
+            Vertical
+        }
+        
+        private void AlignMiddle(Microsoft.Office.Interop.PowerPoint.ShapeRange shapeRange, AlignDirection direction)
+        {
+            if (shapeRange == null || shapeRange.Count < 2)
             {
                 return;
             }
+            for (int i = 2; i <= shapeRange.Count; i++)
+            {
+                if (direction == AlignDirection.Horizontal)
+                {
+                    shapeRange[i].Left = shapeRange[1].Left + (shapeRange[1].Width - shapeRange[i].Width) / 2;
+                }
+                else if (direction == AlignDirection.Vertical)
+                {
+                    shapeRange[i].Top = shapeRange[1].Top + (shapeRange[1].Height - shapeRange[i].Height) / 2;
+                }
+                else
+                {
+                    return;
+                }
+
+            }
+
         }
     }
 }
